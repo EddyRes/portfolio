@@ -1,0 +1,32 @@
+import { useEffect, useState } from 'react'
+import { profile, projects } from '../data/projects'
+
+function Arrow() { return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg> }
+function GitHubIcon() { return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 0 0-3 18.5c.48.09.65-.2.65-.46v-1.67c-2.66.58-3.22-1.13-3.22-1.13-.44-1.1-1.07-1.39-1.07-1.39-.87-.59.07-.58.07-.58.97.07 1.47.98 1.47.98.86 1.45 2.26 1.03 2.81.79.09-.61.34-1.03.61-1.27-2.12-.24-4.35-1.05-4.35-4.68 0-1.03.38-1.87.99-2.53-.1-.24-.43-1.2.09-2.51 0 0 .81-.25 2.62.97a9.2 9.2 0 0 1 4.77 0c1.81-1.22 2.62-.97 2.62-.97.52 1.31.19 2.27.09 2.51.62.66.99 1.5.99 2.53 0 3.64-2.23 4.43-4.36 4.67.34.29.65.84.65 1.7v2.51c0 .26.17.56.66.46A9.5 9.5 0 0 0 12 2.5Z" /></svg> }
+function LinkedInIcon() { return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.3 8.4H3.2V21h3.1V8.4ZM4.75 3A1.8 1.8 0 1 0 4.7 6.6 1.8 1.8 0 0 0 4.75 3ZM21 13.8c0-3.8-2-5.6-4.7-5.6-2.2 0-3.2 1.2-3.7 2v-1.8H9.5V21h3.1v-6.2c0-1.6.3-3.1 2.3-3.1 1.9 0 1.9 1.8 1.9 3.2V21H21v-7.2Z" /></svg> }
+function EmailIcon() { return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 5.5h17v13h-17v-13Zm.7.7 7.8 6.1 7.8-6.1M4 18l5.9-5.8M20 18l-5.9-5.8" /></svg> }
+function DownArrow() { return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M6.5 13.5 12 19l5.5-5.5" /></svg> }
+function Quetzalcoatl() { return <><svg className="serpent-filter" aria-hidden="true"><filter id="quetzal-outline" colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 .851 0 0 0 0 1 0 0 0 0 .247 -.2126 -.7152 -.0722 0 1" /></filter></svg><img className="serpent" src="/images/quetzgreen.avif" alt="" aria-hidden="true" /></> }
+
+export function Home() {
+  const [typedLength, setTypedLength] = useState(0)
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setTypedLength(profile.name.length); return }
+    const timer = window.setInterval(() => setTypedLength((length) => {
+      if (length >= profile.name.length) { window.clearInterval(timer); return length }
+      return length + 1
+    }), 135)
+    return () => window.clearInterval(timer)
+  }, [])
+
+  return <>
+    <section className={`landing ${typedLength === profile.name.length ? 'is-typed' : ''}`} id="top" aria-labelledby="intro-heading"><div className="serpent-stage"><Quetzalcoatl /></div><div className="landing-center"><h1 id="intro-heading" className="typed-name" aria-label={profile.name}><span aria-hidden="true">{profile.name.slice(0, typedLength)}</span><b aria-hidden="true" /></h1><p className="landing-subheader"><span className="subheader-left">B.S. in Computer Science</span><span className="subheader-center">IT & SWE Professional</span><span className="subheader-right">Cal Poly</span></p><div className="landing-socials" aria-label="Professional links"><a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" data-label="GitHub"><GitHubIcon /></a><a href="https://www.linkedin.com/in/eddyres" target="_blank" rel="noreferrer" aria-label="LinkedIn" data-label="LinkedIn"><LinkedInIcon /></a><a href={`mailto:${profile.email}`} aria-label="Email Eddy Resendiz" data-label="Email"><EmailIcon /></a></div></div><a className="scroll-cue" href="#about"><span>Scroll down for more</span><DownArrow /></a></section>
+    <section className="section about-section" id="about" aria-labelledby="about-heading"><div className="section-heading"><h2 id="about-heading">About</h2><p>Based in {profile.location}</p></div><div className="about-single"><p>{profile.about[0]}</p></div></section>
+    <section className="section skills-section" id="skills" aria-labelledby="skills-heading"><div className="section-heading"><h2 id="skills-heading">Skills</h2><p>Technical toolkit</p></div><div className="skill-groups"><div><h3>Languages</h3><ul>{profile.skills.languages.map((skill) => <li key={skill}>{skill}</li>)}</ul></div><div><h3>Frameworks & tools</h3><ul>{profile.skills.tools.map((skill) => <li key={skill}>{skill}</li>)}</ul></div></div></section>
+    <section className="section work-section" id="projects" aria-labelledby="projects-heading"><div className="section-heading"><h2 id="projects-heading">Selected work</h2><p>Four selected projects</p></div><div className="work-layout">{projects.map((project, index) => <article className={`work-item work-${index + 1}`} key={project.id}><div className="work-visual" aria-hidden="true"><span>{String(index + 1).padStart(2, '0')}</span><i /><i /><i /></div><div className="work-content"><h3>{project.title}</h3><p>{project.summary}</p><small>{project.technologies}</small><a href={`#/projects/${project.id}`}>View Project <Arrow /></a></div></article>)}</div></section>
+    <section className="section experience-section" id="experience" aria-labelledby="experience-heading"><div className="section-heading"><h2 id="experience-heading">Experience</h2><p>Where I’ve contributed</p></div><ol className="experience-list">{profile.experience.map((item) => <li key={item.organization}><h3>{item.organization}</h3><p>{item.detail}</p></li>)}</ol></section>
+    <section className="section about-me-section" id="about-me" aria-labelledby="about-me-heading"><div className="section-heading"><h2 id="about-me-heading">About me</h2><p>Beyond CS</p></div><div className="about-layout"><div className="about-copy"><p>{profile.about[1]}</p></div><aside className="beyond-code"><h3>Beyond CS</h3><ul><li>Live music</li><li>Travel</li><li>Interior design</li></ul></aside></div></section>
+    <section className="section education-section" id="education" aria-labelledby="education-heading"><div className="section-heading"><h2 id="education-heading">Education</h2><p>Academic foundation</p></div><p className="education-copy">{profile.education}</p></section>
+    <section className="contact-section" id="contact" aria-labelledby="contact-heading"><p>Contact</p><h2 id="contact-heading">Let’s build something meaningful.</h2><div className="contact-grid"><a href={`mailto:${profile.email}`}>{profile.email}</a><a href="tel:+16195869259">{profile.phone}</a><a href="https://www.linkedin.com/in/eddyres" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a href={profile.github} target="_blank" rel="noreferrer">GitHub <Arrow /></a><a className="resume-button" href={profile.resume} target="_blank" rel="noreferrer">Resume</a></div></section>
+  </>
+}
