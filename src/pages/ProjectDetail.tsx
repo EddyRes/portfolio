@@ -3,7 +3,7 @@ import { type Project } from '../data/projects'
 export function ProjectDetail({ project, index }: { project: Project; index: number }) {
   return (
     <article className="project-detail">
-      <a className="back-link" href="#/projects">← Back to archive</a>
+      <a className="back-link" href="#top">← Back To Homepage</a>
       <div className="detail-topline"><span>Record {String(index + 1).padStart(2, '0')}</span><span>{project.status}</span></div>
       <h1>{project.title}</h1>
       <p className="detail-repository">{project.repository}</p>

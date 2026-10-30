@@ -23,7 +23,7 @@ export default function App() {
   return (
     <div className={`shell ${loaded ? 'is-ready' : ''}`}>
       <div className="loading-bar" aria-hidden="true" />
-      <Header />
+      <Header isProjectDetail={Boolean(project)} />
       <main>{project ? <ProjectDetail project={project} index={projectIndex} /> : <Home />}</main>
       <footer><span>© {new Date().getFullYear()} {profile.name}</span><a href={profile.github} target="_blank" rel="noreferrer">GitHub</a></footer>
     </div>
