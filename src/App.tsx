@@ -10,7 +10,7 @@ function route() {
 
 export default function App() {
   const [loaded, setLoaded] = useState(false)
-  const currentRoute = route()
+  const [currentRoute, setCurrentRoute] = useState(route)
   const projectId = currentRoute.match(/^projects\/([^/]+)$/)?.[1]
   const projectIndex = projects.findIndex((project) => project.id === projectId)
   const project = projectIndex >= 0 ? projects[projectIndex] : undefined
@@ -19,6 +19,12 @@ export default function App() {
     const frame = requestAnimationFrame(() => setLoaded(true))
     return () => cancelAnimationFrame(frame)
   }, [currentRoute])
+
+  useEffect(() => {
+    const updateRoute = () => setCurrentRoute(route())
+    window.addEventListener('hashchange', updateRoute)
+    return () => window.removeEventListener('hashchange', updateRoute)
+  }, [])
 
   return (
     <div className={`shell ${loaded ? 'is-ready' : ''}`}>

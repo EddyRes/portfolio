@@ -24,7 +24,7 @@ An engineering project archive rather than a generic developer-portfolio templat
 
 ## Capabilities and Constraints
 
-Four initial project records: Pordle.io, calpolyshpe/calpolyshpe.org, mattphanm/lpl-financial-team-34, and Meboy1000/Tic-Tac-Task. Project descriptions, features, results, contributions, and real profile links are deliberately undecided and must remain editable placeholders. The site must be static-site friendly and deployable to GitHub Pages at no cost.
+Three selected project records: pordle.io, LPL Financial NorthStar, and Cal Poly SHPE Website. Project descriptions, features, results, contributions, and real profile links remain editable. The site must be static-site friendly and deployable to GitHub Pages at no cost.
 
 ## Evidence on Hand
 

@@ -26,10 +26,9 @@ npm run preview
 
 This site uses hash-based routes so direct project links work on GitHub Pages without server-side rewrites:
 
-- `#/projects/pordle-io`
-- `#/projects/calpolyshpe`
-- `#/projects/lpl-financial-team-34`
-- `#/projects/tic-tac-task`
+- `#/projects/pordle`
+- `#/projects/lpl-financial-northstar`
+- `#/projects/calpoly-shpe`
 
 ## Deploy to GitHub Pages
 
