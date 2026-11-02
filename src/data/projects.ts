@@ -11,6 +11,17 @@ export type Project = {
   links?: { label: string; href: string }[]
 }
 
+export type Experience = {
+  organization: string
+  role: string
+  dates: string
+  location: string
+  current?: boolean
+  description: string
+  highlights: string[]
+  href: string
+}
+
 // Edit portfolio project facts here. Keep unknown facts as placeholders until verified.
 export const projects: Project[] = [
   {
@@ -73,8 +84,47 @@ export const profile = {
     llmsAndAgents: ['ChatGPT', 'Codex', 'AWS Kiro', 'Claude', 'Intent', 'Impeccable', 'Gemini', 'Cursor'],
   },
   experience: [
-    { organization: 'Cal Poly ITS', detail: 'Technical support for faculty and staff, including device troubleshooting, configuration, deployment, and documentation.' },
-    { organization: 'fEMR Global', detail: 'Contributed to work on the formulary feature supporting medication inventory workflows.' },
-    { organization: 'Cal Poly SHPE', detail: 'Tech Lead Officer supporting technical improvements to the organization’s website.' },
-  ],
+    {
+      organization: 'Cal Poly Information Technology Services',
+      role: 'ITS Student Assistant',
+      dates: 'June 2026 – Present',
+      location: 'San Luis Obispo, CA',
+      current: true,
+      description: 'Deliver frontline technical support for Cal Poly faculty and staff while helping configure, image, and deploy Windows and Apple computers, laptops, and printers for campus offices and labs. The role supports a campus IT environment where faculty and staff can request assistance through ITS’s Support Center.',
+      highlights: [
+        'Configure, image, and deploy Windows and Apple devices and printers.',
+        'Troubleshoot technical issues for faculty and staff.',
+        'Maintain accurate Jira service tickets and technical documentation in departmental Wiki and SharePoint resources.',
+      ],
+      href: 'https://tech.calpoly.edu',
+    },
+    {
+      organization: 'Team fEMR Global',
+      role: 'Software Engineer',
+      dates: 'August 2026 – December 2026',
+      location: 'San Luis Obispo, CA',
+      description: 'Worked on fEMR Global’s formulary feature to improve medication-data access and inventory workflows for medical providers supporting international deployments. Team fEMR provides a free, open-source electronic medical records system for transient medical teams in low-resource settings.',
+      highlights: [
+        'Collaborated with a team of four engineers to implement CSV import/export and prior-trip inventory workflows.',
+        'Helped reduce manual formulary setup for medical mission deployments.',
+        'Tested and debugged 20+ formulary updates for accurate inventory tracking, out-of-stock prescription prevention, and pharmacist fulfillment workflows.',
+        'Contributed to a product used across 11 countries, 60 deployments, and 37,500+ patients.',
+      ],
+      href: 'https://femr.global',
+    },
+    {
+      organization: 'Cal Poly SHPE',
+      role: 'Tech Lead Officer',
+      dates: 'May 2024 – May 2026',
+      location: 'San Luis Obispo, CA',
+      description: 'Led technical improvements for Cal Poly SHPE’s chapter website, focusing on maintaining the existing JavaScript and React codebase while improving the member experience. The chapter helps connect Hispanic/Latinx STEM majors with companies and professional networks.',
+      highlights: [
+        'Took ownership of ongoing chapter website enhancements.',
+        'Maintained and optimized the JavaScript and React codebase.',
+        'Refreshed content and user experience through analytics-driven updates.',
+        'Contributed to a 30% increase in new member sign-ups and a 20% increase in sponsorships.',
+      ],
+      href: 'https://www.calpolyshpe.org',
+    },
+  ] satisfies Experience[],
 }
