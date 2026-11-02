@@ -66,7 +66,7 @@ export const profile = {
   email: 'eduardoresendizmun@gmail.com',
   github: 'https://github.com/EddyRes',
   phone: '+1 (619) 586-9259',
-  resume: '/resume/Eddy-Resendiz-Resume.pdf',
+  resume: `${import.meta.env.BASE_URL}resume/Eddy-Resendiz-Resume.pdf`,
   links: [
     { label: 'GitHub', href: 'https://github.com/EddyRes' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/eddyres' },
